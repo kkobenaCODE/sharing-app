@@ -35,9 +35,9 @@ public abstract class ItemsFragment extends Fragment implements Observer {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         context = getContext();
         itemListController.loadItems(context);
+        update = true;
         this.inflater = inflater;
         this.container = container;
 
@@ -73,38 +73,13 @@ public abstract class ItemsFragment extends Fragment implements Observer {
         });
     }
 
-
-//    public void setAdapter(Fragment fragment) {
-//        adapter = new ItemAdapter(context, selected_items, fragment);
-//        list_view.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
-//
-//        // When item is long clicked, this starts EditItemActivity
-//        list_view.setOnItemLongClickListener(new android.widget.AdapterView.OnItemLongClickListener() {
-//
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int pos, long id) {
-//
-//                Item item = adapter.getItem(pos);
-//
-//                int meta_pos = item_list.getIndex(item);
-//                if (meta_pos >= 0) {
-//
-//                    Intent edit = new Intent(context, EditItemActivity.class);
-//                    edit.putExtra("position", meta_pos);
-//                    startActivity(edit);
-//                }
-//                return true;
-//            }
-//        });
-//    }
-
     /**
      * filterItems is implemented independently by AvailableItemsFragment, BorrowedItemsFragment and AllItemsFragment
      *
      * @return selected_items
      */
     public abstract ArrayList<Item> filterItems();
+
 
     /**
      * Called when the activity is destroyed, thus we remove this fragment as an observer
